@@ -2,23 +2,24 @@
 
 **Physics-Guided, Physics-Informed & Physics-Encoded Neural Networks for the ATLAS Magnetic Track Brake**
 
-Status: living document. Written 2026-08-20, before any modeling work started. Update this file whenever a notebook changes scope, a dataset turns out to be unavailable, or an architectural decision is made — it is the single source of truth for *why* the project is structured the way it is.
+_Last updated 2026-08-20._ This is the working plan for the project — the reasoning behind the structure, the method definitions, and the notebook build order. Update it as scope changes, datasets turn out to be unavailable, or architectural decisions get made.
 
 ---
 
-## 0. Repository inspection result
+## 0. Where this starts from
 
-`/home/poxx/github` was inspected for existing ATLAS material (PDFs, MATLAB/Simulink files, FEM exports, measurement data) before writing this plan, as required. **None was found.** The directory contains ~40 unrelated robotics/racing projects (F1TENTH, MPCC controllers, system-ID tooling such as `greyid`/`nlgreyfast`, tire models, EKF estimators) but no ATLAS magnetic track-brake documentation, geometry, or measurements of any kind.
+No ATLAS documentation, MATLAB/Simulink files, FEM exports, or measurement data exist anywhere in this workspace yet — just the new `neurelux/` project itself alongside a set of unrelated robotics/racing repos.
 
-Consequence for this plan:
+Consequences for this plan:
 
-- Sections 1 ("Existing ATLAS model") and 2 ("Available ATLAS measurements") below are written as **placeholders with explicit assumptions**, based on standard textbook equivalent-magnetic-circuit practice for magnetic track brakes (as used e.g. in railway eddy-current / magnetic-track-brake literature), *not* from an inspected ATLAS document. Every assumption is flagged `[ASSUMED]`.
-- **Action needed from the user:** drop the ATLAS PDF/report, any MATLAB/Simulink `.m`/`.slx` files, FEM exports, or measurement CSVs into `data/raw/atlas/` (create the folder) and this document will be revised to replace assumptions with the actual model. Until then, all notebooks use synthetic data and public benchmarks only — this was already the instruction (do not invent ATLAS experimental values), so the missing documentation does not block Steps 1–9 of the notebook plan.
-- Nothing in `/home/poxx/github` was modified outside the new `neurelux/` directory.
+- Sections 1 ("Existing ATLAS model") and 2 ("Available ATLAS measurements") below are **placeholders based on standard textbook equivalent-magnetic-circuit practice** for magnetic track brakes (as used e.g. in railway eddy-current / magnetic-track-brake literature), not on an inspected ATLAS document. Assumed content is marked accordingly.
+- If ATLAS documentation, MATLAB/Simulink files, FEM exports, or measurement CSVs become available, drop them into `data/raw/atlas/` and this section gets rewritten from the real source. Until then, all notebooks use synthetic data and public benchmarks only, and no ATLAS experimental value is invented — so the missing documentation doesn't block the notebook plan below.
 
 ---
 
-## 1. Existing ATLAS model `[ASSUMED — pending real ATLAS documentation]`
+## 1. Existing ATLAS model
+
+*Assumed — based on general magnetic-track-brake practice, not inspected ATLAS documentation; see §0.*
 
 A magnetic track brake (Elektromagnetische Schienenbremse) is a non-contact-actuated friction brake: DC-excited electromagnets are lowered onto the rail, generate an attractive normal force, and the resulting friction (magnet skid sliding along the rail head) provides the braking force. Eddy currents induced by relative motion between magnet and rail both alter the field distribution (motion-induced skin effect) and contribute their own retarding force component. The assumed ATLAS model follows the standard reduced-order approach used for real-time / control-oriented simulation of such systems:
 
@@ -31,7 +32,9 @@ A magnetic track brake (Elektromagnetische Schienenbremse) is a non-contact-actu
 
 **This section must be rewritten from the real ATLAS document as soon as it is available.**
 
-## 2. Available ATLAS measurements `[ASSUMED]`
+## 2. Available ATLAS measurements
+
+*Assumed — see §0.*
 
 Typical instrumentation for this class of system, listed here as the expected signal set that `interfaces/simulink/model_io.yaml` and Notebook 09's ATLAS data loader should be able to consume once real data arrives:
 
@@ -46,7 +49,7 @@ Typical instrumentation for this class of system, listed here as the expected si
 | Normal (attraction) force | `F_A` | N |
 | Braking force | `F_R` | N |
 
-**Action needed:** confirm which of these are actually logged, at what sample rate, and over what operating envelope (current range, gap range, velocity range, temperature range) — this directly determines which extrapolation holdouts (Section 18 style, see below) are meaningful.
+**Open question:** confirm which of these are actually logged, at what sample rate, and over what operating envelope (current range, gap range, velocity range, temperature range) — this directly determines which extrapolation holdouts (Section 18 style, see below) are meaningful.
 
 ---
 
@@ -105,7 +108,7 @@ Typical instrumentation for this class of system, listed here as the expected si
 | Kaggle: Electric Motor Temperature | https://www.kaggle.com/datasets/wkirgsn/electric-motor-temperature | Time series of motor temps, currents, torque, speed | T, I, n, torque | CC0 | Requires Kaggle API key | 08 | **Not an ATLAS/friction dataset** — used only to demonstrate the thermal submodel training loop |
 | Electrical steel B-H / hysteresis (Mendeley/university repositories) | to be identified during Notebook 02 work | B-H loop measurements on Si-steel | B, H | varies | Case-by-case | 02 | Preferred over ferrite data — ATLAS uses steel, not ferrite |
 
-Datasets requiring manual download or credentials must never block a notebook: each notebook checks for local data first and prints the exact `scripts/download_*.py` command (or manual instructions) if missing, per Section 15 of the original brief.
+Datasets requiring manual download or credentials must never block a notebook: each notebook checks for local data first and prints the exact `scripts/download_*.py` command (or manual instructions) if missing — see `scripts/README.md`.
 
 ---
 
@@ -126,7 +129,7 @@ See Section "Notebook style" in `README.md` for the mandatory 14-part structure.
 | 08 | `08_friction_temperature_model.ipynb` | Physics-guided friction residual + lumped thermal feedback loop |
 | 09 | `09_atlas_small_combined_model.ipynb` | Chain 01–08 on synthetic ATLAS-like data (real data only if/when available) |
 
-Execution order follows Section 20 of the brief exactly (Steps 1–10); **this run only completes Steps 1–3** (PLAN+README, Notebook 00, Notebook 01), verified working, before continuing.
+Notebooks are built and verified one at a time, in this order, rather than all at once — each one has to actually run before the next gets started. See `README.md` for current status.
 
 ---
 
@@ -212,6 +215,7 @@ outputs, next_state = model.step(inputs, state, dt)
 ## Open items / assumptions to revisit
 
 1. Real ATLAS documentation not yet available — Sections 1–2 need rewriting once provided.
-2. TEAM 7 / TEAM 28 reference data availability needs to be checked at Notebook 05/06 time (no automatic download exists for these benchmarks as far as currently known — treated as manual-download-with-instructions per Section 15).
+2. TEAM 7 / TEAM 28 reference data availability needs to be checked at Notebook 05/06 time (no automatic download exists for these benchmarks as far as currently known — treated as manual-download-with-instructions, see `scripts/README.md`).
 3. Electrical-steel B-H dataset for Notebook 02 needs to be identified (Mendeley/university search) — ferrite (MagNet) used as fallback/method-validation only.
 4. License text for UPB repos and FEM Magnetics Toolbox should be confirmed (currently assumed MIT, verify in `REFERENCES.md` before any code reuse beyond inspiration).
+5. Liquid Time-constant Networks (`REFERENCES.md` "Further reading") are a candidate continuous-time architecture for Notebook 02's memory/hysteresis models, given their structural similarity to the Cauer ladder's own ODE form — worth a look once Notebook 02 is underway, not yet adopted.

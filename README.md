@@ -1,5 +1,7 @@
 # NeuRelux
 
+<p align="center"><img src="branding/logo-icon.svg" alt="NeuRelux logo" width="140"></p>
+
 **Physics-Guided, Physics-Informed & Physics-Encoded Neural Networks for the ATLAS Magnetic Track Brake**
 
 NeuRelux is a research template for progressively replacing/augmenting the simplified equivalent-magnetic-circuit models used in ATLAS (layered skin-effect networks, lumped reluctances, empirical friction) with neural components — while keeping as much physical structure (topology, conservation, positivity) intact as possible.
@@ -8,7 +10,11 @@ NeuRelux is a research template for progressively replacing/augmenting the simpl
 
 ## Why "small notebooks first"
 
-The long-term goal is one combined ATLAS model, but that model is **not** being built directly. Each physical sub-problem (skin effect, hysteresis, saturation, motion-induced eddy currents, energy-consistent force, friction, thermal feedback) is first isolated, tested on synthetic data and/or a public benchmark, and understood on its own in a small tutorial notebook — see `PLAN.md` §7 for the full list and rationale, and §20 of the original project brief for the mandated build order. Only Notebook 09 combines everything, and only after 01–08 exist and work.
+The long-term goal is one combined ATLAS model, but that model is **not** being built directly. Each physical sub-problem (skin effect, hysteresis, saturation, motion-induced eddy currents, energy-consistent force, friction, thermal feedback) is first isolated, tested on synthetic data and/or a public benchmark, and understood on its own in a small tutorial notebook — see `PLAN.md` §7 for the full list, rationale, and build order. Only Notebook 09 combines everything, and only after 01–08 exist and work.
+
+### A note on the data
+
+Nothing here trains on real ATLAS data yet, because none has surfaced in this workspace (see `PLAN.md` §0). Notebook 01 uses purely synthetic data with known ground truth, generated to match the *shape* of the physics (not measured values). Notebooks 02+ pull small public datasets — magnetic material B-H curves, the TEAM Workshop eddy-current benchmarks, and similar — via `scripts/download_*.py`; see the table in "Public datasets" below for what each one is and how it's used. If real ATLAS measurements ever land in `data/raw/atlas/`, Notebook 09 is where they plug in.
 
 ## Repository layout
 
@@ -28,20 +34,19 @@ neurelux/
 
 ## Status
 
-| Step | Item | Status |
-|---|---|---|
-| 1 | `PLAN.md` + `README.md` | done |
-| 2 | Notebook 00 — method overview | done |
-| 3 | Notebook 01 — synthetic 1D Cauer skin effect | done |
-| 4 | Notebook 02 — hysteresis on public data | not started |
-| 5 | Notebook 03 — neural reluctance circuit | not started |
-| 6 | Notebook 04 — surface×depth Graph-Cauer | not started |
-| 7 | Notebook 05/06 — TEAM 7 / TEAM 28 | not started |
-| 8 | Notebook 07 — co-energy force | not started |
-| 9 | Notebook 08 — friction + thermal | not started |
-| 10 | Notebook 09 — small combined ATLAS model | not started |
+Working and verified so far: the plan, the method-overview notebook, and the synthetic skin-effect notebook. The rest are scaffolded (title, scope, method) but not written yet — built and verified one at a time rather than all at once, per `PLAN.md` §7.
 
-Real ATLAS documentation/measurements were **not found** in this environment (see `PLAN.md` §0). Drop them into `data/raw/atlas/` when available; `PLAN.md` §1–2 will be rewritten from the real source instead of the current assumed placeholder.
+- [x] Plan and method overview (`PLAN.md`, Notebook 00)
+- [x] Notebook 01 — synthetic 1D Cauer skin effect
+- [ ] Notebook 02 — hysteresis on public material data
+- [ ] Notebook 03 — neural reluctance circuit
+- [ ] Notebook 04 — surface×depth Graph-Cauer
+- [ ] Notebooks 05/06 — TEAM 7 / TEAM 28 benchmarks
+- [ ] Notebook 07 — co-energy force
+- [ ] Notebook 08 — friction + thermal
+- [ ] Notebook 09 — combined ATLAS model
+
+Real ATLAS documentation/measurements haven't surfaced yet (see `PLAN.md` §0). Drop them into `data/raw/atlas/` when available; `PLAN.md` §1–2 get rewritten from the real source instead of the current assumed placeholder.
 
 ## Setup
 

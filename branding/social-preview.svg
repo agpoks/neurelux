@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 640" width="1280" height="640">
+  <title>NeuRelux</title>
+  <defs>
+    <linearGradient id="bannerBg" x1="0" y1="0" x2="1280" y2="640" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="1280" height="640" fill="url(#bannerBg)"/>
+
+  <!-- faint full-width background flux wave for texture -->
+  <path d="M-20,220 C160,120 260,300 440,210 C620,120 720,300 900,210 C1060,140 1160,260 1300,190"
+        fill="none" stroke="#22d3ee" stroke-width="3" opacity="0.14"/>
+
+  <!-- icon badge, reused as a nested vector (own local gradient ids to avoid collisions) -->
+  <svg x="90" y="180" width="280" height="280" viewBox="0 0 100 100">
+    <defs>
+      <linearGradient id="bgGradIcon" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#0b1220"/>
+        <stop offset="100%" stop-color="#1e1b4b"/>
+      </linearGradient>
+      <linearGradient id="barGradIcon" x1="10" y1="0" x2="90" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#f59e0b"/>
+        <stop offset="55%" stop-color="#fb923c"/>
+        <stop offset="100%" stop-color="#f43f5e"/>
+      </linearGradient>
+      <linearGradient id="fluxGradIcon" x1="8" y1="0" x2="92" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#67e8f9"/>
+        <stop offset="100%" stop-color="#22d3ee"/>
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="100" height="100" rx="21" fill="url(#bgGradIcon)"/>
+    <rect x="1.3" y="1.3" width="97.4" height="97.4" rx="19.7" fill="none" stroke="#3b3372" stroke-width="1"/>
+    <path d="M8,37 C22,19 32,53 46,35 C58,19 68,49 92,27" fill="none" stroke="#22d3ee" stroke-width="8" stroke-linecap="round" opacity="0.12"/>
+    <path d="M8,37 C22,19 32,53 46,35 C58,19 68,49 92,27" fill="none" stroke="#22d3ee" stroke-width="5" stroke-linecap="round" opacity="0.22"/>
+    <path d="M8,37 C22,19 32,53 46,35 C58,19 68,49 92,27" fill="none" stroke="url(#fluxGradIcon)" stroke-width="2.4" stroke-linecap="round"/>
+    <path d="M18,58 L32,63 L46,68 L60,72 L74,75 L88,77" fill="none" stroke="#cbd5e1" stroke-width="1" opacity="0.45"/>
+    <rect x="14" y="54" width="8" height="34" rx="2" fill="url(#barGradIcon)"/>
+    <rect x="28" y="59" width="8" height="29" rx="2" fill="url(#barGradIcon)"/>
+    <rect x="42" y="64" width="8" height="24" rx="2" fill="url(#barGradIcon)"/>
+    <rect x="56" y="68" width="8" height="20" rx="2" fill="url(#barGradIcon)"/>
+    <rect x="70" y="71" width="8" height="17" rx="2" fill="url(#barGradIcon)"/>
+    <rect x="84" y="73" width="8" height="15" rx="2" fill="url(#barGradIcon)"/>
+    <circle cx="18" cy="58" r="2.6" fill="#f8fafc"/>
+    <circle cx="32" cy="63" r="2.6" fill="#f8fafc"/>
+    <circle cx="46" cy="68" r="2.6" fill="#f8fafc"/>
+    <circle cx="60" cy="72" r="2.6" fill="#f8fafc"/>
+    <circle cx="74" cy="75" r="2.6" fill="#f8fafc"/>
+    <circle cx="88" cy="77" r="2.6" fill="#f8fafc"/>
+  </svg>
+
+  <text x="410" y="300" font-family="Liberation Sans, DejaVu Sans, Arial, sans-serif" font-weight="bold" font-size="92" fill="#f8fafc">NeuRelux</text>
+  <text x="413" y="360" font-family="Liberation Sans, DejaVu Sans, Arial, sans-serif" font-size="27" fill="#94a3b8">Physics-Guided, -Informed &amp; -Encoded Neural Networks</text>
+  <text x="413" y="398" font-family="Liberation Sans, DejaVu Sans, Arial, sans-serif" font-size="27" fill="#94a3b8">for the ATLAS Magnetic Track Brake</text>
+</svg>

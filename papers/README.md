@@ -17,5 +17,6 @@ Literature backing the methods and benchmarks used in this project — distinct 
 | Princeton MagNet dataset | dataset paper to be added once verified | 02 | **not yet added** |
 | Port-Hamiltonian systems (`pyphs`) | paper citation to be added once verified | future (method L) | **not yet added** |
 | Magnetic track brake / eddy-current rail brake modeling | none identified yet — literature search needed once real ATLAS documentation is available | 01, 06, 09 | **not yet added** |
+| Liquid Time-constant Networks (continuous-time, ODE-based RNN) | Hasani, Lechner, Amini, Rus, Grosu, "Liquid Time-constant Networks," AAAI 2021 (arXiv:2006.04439) | candidate for 02 (not yet adopted) | in `references.bib` — see `REFERENCES.md` for accessible write-ups |
 
 Add a paper: (1) drop the PDF in `pdfs/` (local only), (2) add a verified BibTeX entry to `references.bib`, (3) update the table above and, if the paper's method gets its own notebook, cite it in that notebook's markdown.

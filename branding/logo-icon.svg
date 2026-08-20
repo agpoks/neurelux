@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-label="NeuRelux logo">
+  <title>NeuRelux</title>
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="10" y1="0" x2="90" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="55%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#f43f5e"/>
+    </linearGradient>
+    <linearGradient id="fluxGrad" x1="8" y1="0" x2="92" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#67e8f9"/>
+      <stop offset="100%" stop-color="#22d3ee"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="100" height="100" rx="21" fill="url(#bgGrad)"/>
+  <rect x="1.3" y="1.3" width="97.4" height="97.4" rx="19.7" fill="none" stroke="#3b3372" stroke-width="1"/>
+
+  <!-- magnetic flux wave, layered for a soft glow without relying on filter support -->
+  <path d="M8,37 C22,19 32,53 46,35 C58,19 68,49 92,27" fill="none" stroke="#22d3ee" stroke-width="8" stroke-linecap="round" opacity="0.12"/>
+  <path d="M8,37 C22,19 32,53 46,35 C58,19 68,49 92,27" fill="none" stroke="#22d3ee" stroke-width="5" stroke-linecap="round" opacity="0.22"/>
+  <path d="M8,37 C22,19 32,53 46,35 C58,19 68,49 92,27" fill="none" stroke="url(#fluxGrad)" stroke-width="2.4" stroke-linecap="round"/>
+
+  <!-- reluctance-graph edges connecting the ladder nodes -->
+  <path d="M18,58 L32,63 L46,68 L60,72 L74,75 L88,77" fill="none" stroke="#cbd5e1" stroke-width="1" opacity="0.45"/>
+
+  <!-- Cauer-ladder skin-effect layers: bars grow shorter with depth -->
+  <rect x="14" y="54" width="8" height="34" rx="2" fill="url(#barGrad)"/>
+  <rect x="28" y="59" width="8" height="29" rx="2" fill="url(#barGrad)"/>
+  <rect x="42" y="64" width="8" height="24" rx="2" fill="url(#barGrad)"/>
+  <rect x="56" y="68" width="8" height="20" rx="2" fill="url(#barGrad)"/>
+  <rect x="70" y="71" width="8" height="17" rx="2" fill="url(#barGrad)"/>
+  <rect x="84" y="73" width="8" height="15" rx="2" fill="url(#barGrad)"/>
+
+  <!-- layer nodes -->
+  <circle cx="18" cy="58" r="2.6" fill="#f8fafc"/>
+  <circle cx="32" cy="63" r="2.6" fill="#f8fafc"/>
+  <circle cx="46" cy="68" r="2.6" fill="#f8fafc"/>
+  <circle cx="60" cy="72" r="2.6" fill="#f8fafc"/>
+  <circle cx="74" cy="75" r="2.6" fill="#f8fafc"/>
+  <circle cx="88" cy="77" r="2.6" fill="#f8fafc"/>
+</svg>
