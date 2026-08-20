@@ -1,0 +1,27 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# public datasets can be large; fetch via scripts/, do not commit
+data/raw/*
+data/public/*
+!data/raw/.gitkeep
+!data/public/.gitkeep
+
+# small processed artifacts are fine to commit selectively; large ones are not
+data/processed/*.npz
+data/processed/*.csv
+
+# academic PDFs are typically copyrighted; keep local only, track citations via references.bib
+papers/pdfs/*
+!papers/pdfs/.gitkeep
+
+# sphinx build output (ReadTheDocs builds this remotely; no need to commit locally)
+docs/_build/
+
+.DS_Store

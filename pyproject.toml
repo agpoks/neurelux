@@ -1,0 +1,38 @@
+[project]
+name = "atlas-physics"
+version = "0.1.0"
+description = "Physics-guided/informed/encoded neural networks for the ATLAS magnetic track brake (NeuRelux research template)"
+requires-python = ">=3.10"
+dependencies = [
+  "torch>=2.2",
+  "numpy",
+  "scipy",
+  "matplotlib",
+  "pandas",
+  "requests",
+  "pyyaml",
+  "tqdm",
+  "scikit-learn",
+]
+
+[project.optional-dependencies]
+dev = [
+  "jupyterlab",
+  "notebook",
+  "nbclient",
+  "pytest",
+  "ipykernel",
+]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+# The environment's globally-installed anyio pytest plugin is incompatible with
+# the globally-installed pytest version (imports a private API removed/renamed
+# upstream) and breaks plugin autoload; this project doesn't use anyio.
+addopts = "-p no:anyio"

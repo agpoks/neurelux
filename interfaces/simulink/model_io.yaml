@@ -1,0 +1,25 @@
+# Planned ATLAS I/O signal set for the Simulink deployment contract (interfaces/simulink/README.md).
+# This documents the *expected* signal set from PLAN.md §2 (assumed, pending real ATLAS
+# documentation — see PLAN.md §0). It is NOT yet an implemented interface for any submodel;
+# each src/atlas_physics submodel gets its own inputs/outputs/state block here as it is built,
+# starting with cauer.CauerLadder1D once it is wired into interfaces/simulink/reference_step.py.
+
+status: planned_not_implemented
+
+units_convention: SI
+
+signals:
+  inputs:
+    - {name: I, unit: A, description: "coil current"}
+    - {name: U, unit: V, description: "coil voltage"}
+    - {name: g, unit: m, description: "air gap"}
+    - {name: v, unit: m/s, description: "rail-relative velocity"}
+    - {name: T_ambient, unit: K, description: "ambient temperature"}
+  outputs:
+    - {name: Phi, unit: Wb, description: "magnetic flux"}
+    - {name: F_A, unit: N, description: "attraction (normal) force"}
+    - {name: F_R, unit: N, description: "braking (friction) force"}
+    - {name: T, unit: K, description: "magnet/rail temperature"}
+  states: []  # filled in per-submodel as each is built (Cauer ladder states first)
+
+submodels: {}  # one entry per src/atlas_physics module once it implements initial_state()/step()
