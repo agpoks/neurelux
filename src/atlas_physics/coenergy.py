@@ -13,9 +13,10 @@ flux and force, with nothing enforcing that relation -- included so the
 notebook can check it directly rather than assume it.
 
 `true_coenergy` defines a synthetic ground-truth potential (illustrative,
-not measured -- see PLAN.md §0) whose flux/force pair is generated the
-same way (autograd of one function), so the "true" data handed to every
-model is itself, by construction, perfectly self-consistent.
+not measured -- no real ATLAS flux/force data exists yet) whose flux/force
+pair is generated the same way (autograd of one function), so the "true"
+data handed to every model is itself, by construction, perfectly
+self-consistent.
 """
 
 from __future__ import annotations

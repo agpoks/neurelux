@@ -6,9 +6,8 @@ loops) from the UPB `materialdatabase` package into
 `data/public/materialdatabase/bh_loops.json`, and this module just reads it.
 
 Ferrite (N87), not steel: ATLAS uses steel, but no open steel B-H dataset has
-been identified yet (see PLAN.md §6, open item 3) -- this is the documented
-fallback, used for method validation, not as a stand-in for real ATLAS
-material behavior.
+been identified yet -- this is the documented fallback, used for method
+validation, not as a stand-in for real ATLAS material behavior.
 """
 
 from __future__ import annotations

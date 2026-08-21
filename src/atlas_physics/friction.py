@@ -22,8 +22,9 @@ def friction_force(mu: torch.Tensor, F_N: torch.Tensor) -> torch.Tensor:
 
 
 def true_mu(v: torch.Tensor, T: torch.Tensor, mu0: float = 0.35, a: float = 0.15, v0: float = 5.0, b: float = -0.0015) -> torch.Tensor:
-    """Illustrative synthetic friction-coefficient trend (not measured -- see PLAN.md §0):
-    Stribeck-like decrease with velocity, mild linear decrease with temperature.
+    """Illustrative synthetic friction-coefficient trend (not measured -- no real
+    ATLAS friction data exists yet): Stribeck-like decrease with velocity, mild
+    linear decrease with temperature.
     """
     return mu0 - a * v / (v + v0) + b * (T - 25.0)
 

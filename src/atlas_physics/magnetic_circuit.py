@@ -76,7 +76,7 @@ def solve_B(Theta: torch.Tensor, g: torch.Tensor, T: torch.Tensor, mu_r_fn, l_co
 
 
 class FixedMuR(nn.Module):
-    """Single learned scalar permeability -- ATLAS's assumed linear circuit (PLAN.md §1).
+    """Single learned scalar permeability -- what ATLAS's assumed linear circuit does.
     Cannot represent saturation or temperature dependence at all, by construction.
     """
 
