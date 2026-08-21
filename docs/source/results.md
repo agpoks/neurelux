@@ -1,14 +1,25 @@
 # Results so far
 
-Only one method is built and trained end to end right now: the [Cauer ladder](methods/cauer.md) (Notebook 01). Everything else in [`methods/overview.md`](methods/overview.md) is a candidate, not yet evidence.
+All nine implemented methods are built, trained, and evaluated — three on real public data, six on synthetic ground truth. Read {doc}`Method landscape <methods/overview>` for what each method *is*; this page is what each one actually *showed*, in one place, so the throughline across notebooks is visible without reading all nine.
 
-## What's actually been shown
+## Where physics-encoding wins cleanly
 
-- A physics-encoded ODE (fixed ladder topology, only positivity-constrained parameters trained) **recovers the true system's low-frequency behavior almost exactly** from a step and a ramp excitation alone, and generalizes to excitation shapes it never saw during training.
-- The same experiment also surfaces a real limitation, not a hidden one: individual deep-layer parameters are only weakly identifiable from surface-only, low-frequency data. See [`methods/cauer.md`](methods/cauer.md#results) for the frequency-response comparison that shows exactly where the learned model stays accurate and where it doesn't.
+- {doc}`**Graph-Cauer** <methods/graph_cauer>`: beats an unconstrained model with 10x the parameters on velocity extrapolation, using the *same* parameter count as a topology-poorer baseline — the cleanest result in the project.
+- {doc}`**TEAM28** <methods/team28>`: a physics-encoded transformer + co-energy model reproduces a real 174-point measured trajectory closely (0.85mm RMSE, including the full underdamped overshoot); a black-box model trained on the same real data settles at the wrong equilibrium entirely.
+- {doc}`**Co-energy network** <methods/coenergy>`: the Maxwell-reciprocity consistency violation is ~7 orders of magnitude smaller than two independently-trained networks — a structural guarantee, not a trained-in property.
+- {doc}`**Neural reluctance circuit** <methods/neural_circuit>` and {doc}`**friction** <methods/friction_thermal>`: hard-coding an exact relation (air-gap reluctance; $F_R=\mu F_N$) and learning only the genuinely uncertain part wins on every extrapolation axis tested.
 
-That second point matters more than it might look: it's a concrete, checkable answer to "how much can we trust this kind of model outside the conditions it was trained on", which is the central risk in replacing any part of ATLAS's existing circuit with a learned component.
+## Where it's more nuanced
+
+- {doc}`**Hysteresis** <methods/hysteresis>`: a neural residual embedded in a physics ODE (a Universal Differential Equation) wins on real temperature extrapolation but **loses badly** on amplitude extrapolation — an unconstrained additive correction has no guarantee outside its training domain, and actively damages the otherwise-correct bare physics there.
+- {doc}`**Neural reluctance circuit** <methods/neural_circuit>` again, contrasted directly against hysteresis's finding: a **bounded** multiplicative correction (±30% modulation) doesn't share that failure mode. The difference is architectural, not incidental — worth reading both pages together.
+- {doc}`**Cauer ladder** <methods/cauer>` (Notebook 01, the first result): generalizes well across excitation *type* it never trained on, but individual deep-layer parameters are only weakly identifiable from surface-only, low-frequency data — a genuine structural-identifiability limit, not a training failure. The same class of finding recurs in the thermal model (`friction_thermal`, §12) with a 2-parameter system.
+- {doc}`**TEAM7** <methods/team7>`: even a PINN with its physics-residual loss driven to near-zero fails to extrapolate to a real, benchmark-specified second frequency, because its collocation points never covered that timescale — a soft penalty only shapes behavior where it's evaluated.
+
+## What composing everything showed
+
+{doc}`**The combined model** <methods/combined>` chains four of these pieces (using each one's reference physics, not retrained weights) into one coupled synthetic braking simulation with genuine temperature feedback. It surfaces an emergent, unscripted behavior — the friction coefficient traces a U-shape from two competing real effects — and its own energy balance closes to 0.02% (integration error, not a bug), a direct correctness check rather than just "the plots look right."
 
 ## What's next
 
-Everything downstream builds on this ladder: [`methods/overview.md`](methods/overview.md) lists the full method-by-method plan, and `PLAN.md` §7/§9 has the notebook build order and the ablation study (M0-M8) that will eventually compare all of these against each other and against the existing ATLAS circuit — accuracy, extrapolation, physical-residual violation, and cost, not just accuracy alone.
+Every notebook the project's build order called for now exists (see {doc}`Getting started <getting-started>`). What's next is the ablation study — training each submodule for real (not the reference functions the combined model used) and comparing the assembled learned pipeline against both the synthetic reference and, eventually, real ATLAS data.

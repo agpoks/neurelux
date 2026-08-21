@@ -2,21 +2,55 @@
 
 Physics-guided, physics-informed, and physics-encoded neural networks for the ATLAS magnetic track brake — a research project trying to replace parts of a simplified equivalent-magnetic-circuit model with learned components, without throwing away the physical structure (topology, conservation, positivity) that makes the original model trustworthy and fast.
 
-Start with [**Background**](background.md) if you're new to the problem — it covers what a magnetic track brake is, the governing equations, and the guided/informed/encoded distinction the rest of this documentation relies on. Then [**Method landscape**](methods/overview.md) surveys the candidate approaches, and [**Cauer ladder**](methods/cauer.md) walks through the first one actually built, equation to code to results.
+## How to read this documentation
+
+| | |
+|---|---|
+| **1. The physics** | {doc}`Background <background>` — what a magnetic track brake is, the governing equations, and precisely what "guided", "informed", and "encoded" mean here. |
+| **2. The method landscape** | {doc}`Method landscape <methods/overview>` — every candidate representation surveyed, and why the recommended combination was chosen before anything was built. |
+| **3. The methods, one at a time** | Nine pages, one per implemented method, equation → code → real results: {doc}`Cauer ladder <methods/cauer>`, {doc}`hysteresis <methods/hysteresis>`, {doc}`neural reluctance circuit <methods/neural_circuit>`, {doc}`Graph-Cauer <methods/graph_cauer>`, {doc}`TEAM7 <methods/team7>`, {doc}`TEAM28 <methods/team28>`, {doc}`co-energy force <methods/coenergy>`, {doc}`friction & thermal <methods/friction_thermal>`, {doc}`combined model <methods/combined>`. |
+| **4. The evidence** | {doc}`Results <results>` — what each method actually showed, in one place, including the ones that didn't go as expected. |
+
+New to the project? Start with {doc}`Getting started <getting-started>`, then {doc}`Background <background>`.
+
+```{toctree}
+:maxdepth: 1
+:hidden:
+:caption: Start here
+
+getting-started
+background
+```
 
 ```{toctree}
 :maxdepth: 2
-:caption: Tutorial
+:hidden:
+:caption: Methods
 
-background
 methods/overview
 methods/cauer
+methods/hysteresis
+methods/neural_circuit
+methods/graph_cauer
+methods/team7
+methods/team28
+methods/coenergy
+methods/friction_thermal
+methods/combined
+```
+
+```{toctree}
+:maxdepth: 1
+:hidden:
+:caption: Evidence
+
 results
 ```
 
 ```{toctree}
 :maxdepth: 1
-:caption: Notebooks (run it yourself)
+:hidden:
+:caption: Notebooks
 
 notebooks/00_overview_methods
 notebooks/01_skin_effect_cauer_synthetic
@@ -32,10 +66,9 @@ notebooks/09_atlas_small_combined_model
 
 ```{toctree}
 :maxdepth: 1
-:caption: Project
+:hidden:
+:caption: Reference
 
-plan
-readme
 references
 papers
 bibliography

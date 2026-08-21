@@ -11,7 +11,7 @@ A magnetic track brake is a non-contact-actuated friction brake used on rail veh
 Three physical effects make this hard to model well:
 
 1. **Saturation.** The steel pole and rail head don't have constant permeability -- `permeability` drops as flux density approaches saturation, so the simple relation `flux = MMF / reluctance` becomes nonlinear.
-2. **Skin effect.** A solid steel rail doesn't respond to a time-varying or motion-induced field uniformly through its depth -- the field diffuses in from the surface, more slowly at higher frequency (or higher relative velocity). See [Cauer ladder](methods/cauer.md) below for exactly how this is modeled.
+2. **Skin effect.** A solid steel rail doesn't respond to a time-varying or motion-induced field uniformly through its depth -- the field diffuses in from the surface, more slowly at higher frequency (or higher relative velocity). See {doc}`Cauer ladder <methods/cauer>` below for exactly how this is modeled.
 3. **Motion-induced eddy currents.** Relative velocity between the magnet and the rail changes the effective field distribution and adds its own retarding force component (the same reason a magnet dropped down a copper pipe falls slowly) -- not yet covered by an implemented notebook, see `PLAN.md` for the plan (Notebooks 05-06, TEAM Workshop benchmarks).
 
 ## The governing equations, briefly
@@ -28,7 +28,7 @@ $$
 \mu \frac{\partial H}{\partial t} = \frac{\partial}{\partial z}\!\left(\rho \frac{\partial H}{\partial z}\right), \qquad \rho = \frac{1}{\sigma}
 $$
 
-This is the equation [`methods/cauer.md`](methods/cauer.md) discretizes into a layered network and actually trains -- see that page for the full derivation.
+This is the equation {doc}`the Cauer ladder <methods/cauer>` discretizes into a layered network and actually trains -- see that page for the full derivation.
 
 **Attraction force**, from magnetic co-energy `W'(I, g, T)`:
 
@@ -58,4 +58,4 @@ This project is deliberately built around a three-way distinction, used consiste
 
 **PHYSICS-ENCODED** — the equation or topology is built directly into the forward computation graph, so it *cannot* be violated by construction (up to numerical integration error). Only physically-meaningful, positivity-constrained quantities are learned; the equations connecting them are fixed.
 
-These aren't mutually exclusive within one architecture — see [`methods/overview.md`](methods/overview.md) for how the candidate methods combine all three at different levels, and [`methods/cauer.md`](methods/cauer.md) for the first one actually built and trained.
+These aren't mutually exclusive within one architecture — see {doc}`Method landscape <methods/overview>` for how the candidate methods combine all three at different levels, and {doc}`the Cauer ladder <methods/cauer>` for the first one actually built and trained.
