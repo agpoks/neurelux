@@ -34,7 +34,7 @@ neurelux/
 
 ## Status
 
-Working and verified: the plan, the method-overview notebook, and Notebooks 01–08 — each built, executed end to end, and checked before moving to the next, per `PLAN.md` §7. Only the final combined model remains.
+All ten planned notebooks exist, are built, and have been executed end to end — each checked before moving to the next, per `PLAN.md` §7. What's next is the ablation study (`PLAN.md` §9), not more notebooks — see Notebook 09 §13.
 
 - [x] Plan and method overview (`PLAN.md`, Notebook 00)
 - [x] Notebook 01 — synthetic 1D Cauer skin effect
@@ -45,7 +45,7 @@ Working and verified: the plan, the method-overview notebook, and Notebooks 01�
 - [x] Notebook 06 — TEAM Workshop Problem 28 (real 174-point measured trajectory)
 - [x] Notebook 07 — co-energy force
 - [x] Notebook 08 — friction + thermal
-- [ ] Notebook 09 — combined ATLAS model
+- [x] Notebook 09 — combined ATLAS model (synthetic reference simulation; not yet the learned-submodel ablation, see §9 above)
 
 Real ATLAS documentation/measurements haven't surfaced yet (see `PLAN.md` §0). Drop them into `data/raw/atlas/` when available; `PLAN.md` §1–2 get rewritten from the real source instead of the current assumed placeholder.
 

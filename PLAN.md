@@ -180,7 +180,9 @@ Notebooks are built and verified one at a time, in this order, rather than all a
 
 Recommended core (from Notebook 00 evaluation, provisional): **nonlinear neural reluctance graph + graph-Cauer skin-effect model + optional hysteresis state + energy-consistent force + physics-guided friction + thermal feedback**, i.e. combination `M7`/`M8` in the ablation ladder below — but this is a hypothesis to be confirmed empirically in Notebook 00's comparison and revisited after Notebooks 01–08 produce evidence, not a foregone conclusion.
 
-## 9. Ablation study (design, executed only after Notebooks 01–08 exist)
+## 9. Ablation study (design; not yet executed)
+
+Notebooks 01–08 now all exist and are individually validated, and Notebook 09 built the synthetic reference simulation this ablation would compare learned submodels against — the precondition for running this table is met, but the table itself has not been run.
 
 | ID | Model | Adds |
 |---|---|---|
