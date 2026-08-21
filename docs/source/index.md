@@ -69,7 +69,6 @@ notebooks/09_atlas_small_combined_model
 :hidden:
 :caption: Reference
 
-references
 papers
 bibliography
 ```

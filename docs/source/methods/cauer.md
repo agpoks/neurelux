@@ -47,7 +47,7 @@ def rhs(self, x, u):
     return (x @ A.T + u * B_u) / C  # dx/dt = C^-1 (A x + B_u u)
 ```
 
-`simulate()` rolls this out with explicit (forward) Euler — deliberately the simplest possible fixed-step integrator, because `step()` (below) needs to be a pure function of `(input, state, dt)` with no adaptive-step solver hidden inside it, for the [Simulink deployment contract](../references.md):
+`simulate()` rolls this out with explicit (forward) Euler — deliberately the simplest possible fixed-step integrator, because `step()` (below) needs to be a pure function of `(input, state, dt)` with no adaptive-step solver hidden inside it, for the eventual Simulink deployment contract (`interfaces/simulink/README.md` in the repository):
 
 ```python
 def step(self, u_t, x, dt):

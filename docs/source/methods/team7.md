@@ -5,7 +5,7 @@ The first method tested against parameters this project didn't choose: real geom
 
 ## An honest scoping note
 
-TEAM7's real geometry is a solid aluminum plate with an eccentric rectangular hole, excited by an offset racetrack coil — genuinely 3D and asymmetric, which is the point of the benchmark. Reproducing its full 3D field solution needs a 3D FEM/BEM solver, out of scope for this project's reduced-order approach. Its actual reference field measurements are published in a companion results paper (COMPEL, 1990) not freely accessible from this environment — **no values from that paper are used or invented here**; see [References](../references) for exactly what was and wasn't obtained.
+TEAM7's real geometry is a solid aluminum plate with an eccentric rectangular hole, excited by an offset racetrack coil — genuinely 3D and asymmetric, which is the point of the benchmark. Reproducing its full 3D field solution needs a 3D FEM/BEM solver, out of scope for this project's reduced-order approach. Its actual reference field measurements are published in a companion results paper (COMPEL, 1990) not freely accessible from this environment — **no values from that paper are used or invented here**; see `REFERENCES.md` in the repository for exactly what was and wasn't obtained.
 
 What *is* used, taken directly from the official spec PDF (`scripts/download_team7.py`; [compumag.org](https://www.compumag.org/wp/wp-content/uploads/2018/06/problem7.pdf)):
 
