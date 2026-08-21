@@ -34,16 +34,17 @@ neurelux/
 
 ## Status
 
-Working and verified so far: the plan, the method-overview notebook, and the synthetic skin-effect notebook. The rest are scaffolded (title, scope, method) but not written yet — built and verified one at a time rather than all at once, per `PLAN.md` §7.
+Working and verified: the plan, the method-overview notebook, and Notebooks 01–08 — each built, executed end to end, and checked before moving to the next, per `PLAN.md` §7. Only the final combined model remains.
 
 - [x] Plan and method overview (`PLAN.md`, Notebook 00)
 - [x] Notebook 01 — synthetic 1D Cauer skin effect
-- [ ] Notebook 02 — hysteresis on public material data
-- [ ] Notebook 03 — neural reluctance circuit
-- [ ] Notebook 04 — surface×depth Graph-Cauer
-- [ ] Notebooks 05/06 — TEAM 7 / TEAM 28 benchmarks
-- [ ] Notebook 07 — co-energy force
-- [ ] Notebook 08 — friction + thermal
+- [x] Notebook 02 — hysteresis on real ferrite B-H data (UPB materialdatabase)
+- [x] Notebook 03 — neural reluctance circuit
+- [x] Notebook 04 — surface×depth Graph-Cauer
+- [x] Notebook 05 — TEAM Workshop Problem 7 (real material/frequency parameters)
+- [x] Notebook 06 — TEAM Workshop Problem 28 (real 174-point measured trajectory)
+- [x] Notebook 07 — co-energy force
+- [x] Notebook 08 — friction + thermal
 - [ ] Notebook 09 — combined ATLAS model
 
 Real ATLAS documentation/measurements haven't surfaced yet (see `PLAN.md` §0). Drop them into `data/raw/atlas/` when available; `PLAN.md` §1–2 get rewritten from the real source instead of the current assumed placeholder.
