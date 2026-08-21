@@ -18,10 +18,11 @@ Before building anything, it's worth surveying what a "physics + neural network"
 | K | Co-energy network | single $W'_\theta(I,g,T)$ | flux/force are *exact* derivatives of $W'$ | flux and force can't become inconsistent | needs both measured together | **high** — {doc}`implemented <coenergy>` |
 | L | Port-Hamiltonian NN | $J, R, H$ structure | energy + dissipation, passivity guaranteed | strongest stability guarantee | more implementation overhead | speculative — later hardening step |
 | M | Full Maxwell/vector-potential PINN | vector potential field | Maxwell's equations, soft penalty | most physically complete | expensive, not real-time | low for deployment — reference only, {doc}`tested <team7>` |
+| N | Velocity-dependent MMF loss (motion-induced eddy currents) | $\text{MMF}_{\text{loss}}(v)$: bounded free function, or a 2-parameter saturating form | zero-at-standstill, saturating structure | directly grounded in a real 2025 measurement of this exact effect | functional form for a real geometry still needs field validation | **high** — real effect measured on an MTB, {doc}`implemented <velocity_eddy_weakening>` |
 
 Friction and the thermal feedback loop (method B applied to $F_R=\mu F_N$) and the small combined system chaining everything together are {doc}`implemented <friction_thermal>` and {doc}`implemented <combined>` too, though neither is a numbered row above — they're the closing pieces of the architecture, not separate candidate representations of a field/circuit quantity.
 
-**Guided:** B, and the input-feature choices underlying D–L. **Informed:** C, M, and any consistency loss layered on top of an encoded model. **Encoded:** D, E, F, G, K, L.
+**Guided:** B, and the input-feature choices underlying D–L. **Informed:** C, M, and any consistency loss layered on top of an encoded model. **Encoded:** D, E, F, G, K, L, N.
 
 ## The recommended combination
 
@@ -33,4 +34,4 @@ $$
 .. plot:: _diagrams/recommended_pipeline.py
 ```
 
-Why this combination, method by method, and why the *most complicated* model is not assumed to be best, is in the repository's `PLAN.md` (§4-5 and §8-9, the ablation ladder M0-M8). Every piece now exists — see [Results](../results) for what each one actually showed.
+Why this combination, method by method: each row above earns its place only where {doc}`the results <../results>` show its structural constraint winning something a simpler or larger alternative doesn't — not because it's the most complicated option available. Every piece now exists; the natural next step is the ablation ladder this recommendation implies — training each learned submodule for real (not the reference physics {doc}`the combined model <combined>` used) and comparing the assembled pipeline stage by stage (M0: no learned components, through M8: everything above learned) against the synthetic reference and, eventually, real ATLAS data.

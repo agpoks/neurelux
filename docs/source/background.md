@@ -12,7 +12,7 @@ Three physical effects make this hard to model well:
 
 1. **Saturation.** The steel pole and rail head don't have constant permeability -- `permeability` drops as flux density approaches saturation, so the simple relation `flux = MMF / reluctance` becomes nonlinear.
 2. **Skin effect.** A solid steel rail doesn't respond to a time-varying or motion-induced field uniformly through its depth -- the field diffuses in from the surface, more slowly at higher frequency (or higher relative velocity). See {doc}`Cauer ladder <methods/cauer>` below for exactly how this is modeled.
-3. **Motion-induced eddy currents.** Relative velocity between the magnet and the rail changes the effective field distribution and adds its own retarding force component (the same reason a magnet dropped down a copper pipe falls slowly) -- not yet covered by an implemented notebook, see `PLAN.md` for the plan (Notebooks 05-06, TEAM Workshop benchmarks).
+3. **Motion-induced eddy currents.** Relative velocity between the magnet and the rail changes the effective field distribution and adds its own retarding force component (the same reason a magnet dropped down a copper pipe falls slowly) -- tested against two real TEAM Workshop benchmarks, {doc}`TEAM7 <methods/team7>` (diffusion at real frequencies) and {doc}`TEAM28 <methods/team28>` (a real measured levitation trajectory, the closest public analogue to motion-coupled braking).
 
 ## The governing equations, briefly
 
@@ -42,7 +42,7 @@ $$
 F_{R,i} = \mu_i F_{A,i}, \qquad C_{th}\frac{dT}{dt} = P_{\text{loss}} - hA(T - T_{\text{ambient}})
 $$
 
-None of these last two are implemented yet (Notebooks 07-08 in the plan) -- they're here so the whole physical picture is visible from the start, not assembled piecemeal.
+Force from co-energy is {doc}`implemented and tested <methods/coenergy>` against a directly-checkable Maxwell-reciprocity consistency condition; friction and the thermal feedback loop are {doc}`implemented here <methods/friction_thermal>`, and {doc}`chained together with everything above <methods/combined>` into one coupled simulation.
 
 ## Three ways physics can enter a neural model
 

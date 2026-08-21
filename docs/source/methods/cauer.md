@@ -1,7 +1,7 @@
 (cauer)=
 # Cauer ladder — skin effect
 
-The Cauer ladder is the first method built in this project, because it's the most direct match to something ATLAS already does: represent the rail's skin effect with a layered network instead of solving the full field PDE. `src/atlas_physics/cauer.py` implements it; this page walks through the physics, the code, and what it actually learns.
+The Cauer ladder is the first method built in this project, because it's the most direct match to something ATLAS already does: represent the rail's skin effect with a layered network instead of solving the full field PDE — the same "discretize into layers with frequency-dependent impedance" idea used classically for winding eddy currents ({cite:t}`dowell1966effects`), here applied to a solid conducting rail instead. `src/atlas_physics/cauer.py` implements it; this page walks through the physics, the code, and what it actually learns.
 
 ## The equation
 
@@ -61,7 +61,7 @@ def step(self, u_t, x, dt):
 
 ## Results
 
-Trained on **synthetic** data only (no real ATLAS measurements exist yet — see `PLAN.md` §0): a ground-truth 6-layer ladder with geometrically-growing layer thickness is simulated under four excitations (step, ramp, sinusoid, multi-frequency), Gaussian noise is added to two observables (surface field, total flux), and a student ladder — initialized flat and uninformative — is trained on the step and ramp excitations only.
+Trained on **synthetic** data only (no real ATLAS measurements exist yet — see {doc}`Getting started <../getting-started>` for exactly what data this project does and doesn't have): a ground-truth 6-layer ladder with geometrically-growing layer thickness is simulated under four excitations (step, ramp, sinusoid, multi-frequency), Gaussian noise is added to two observables (surface field, total flux), and a student ladder — initialized flat and uninformative — is trained on the step and ramp excitations only.
 
 ```{image} ../_static/results/depth_time_and_surface_deep.png
 :alt: Depth-time field penetration and surface vs. deep field, true system
@@ -87,4 +87,4 @@ Source: [`src/atlas_physics/cauer.py`](https://github.com/agpoks/neurelux/blob/m
 
 ## Next
 
-This 1D ladder only resolves depth. The rail also needs lateral (surface-direction) resolution to capture eddy-current redistribution and velocity dependence — that's the surface × depth Graph-Cauer network, `PLAN.md`'s central candidate for ATLAS (Notebook 04, not yet built).
+This 1D ladder only resolves depth. The rail also needs lateral (surface-direction) resolution to capture eddy-current redistribution and velocity dependence — that's {doc}`the surface × depth Graph-Cauer network <graph_cauer>`, this project's central candidate for the rail.

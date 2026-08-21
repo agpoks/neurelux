@@ -8,7 +8,7 @@ Physics-guided, physics-informed, and physics-encoded neural networks for the AT
 |---|---|
 | **1. The physics** | {doc}`Background <background>` — what a magnetic track brake is, the governing equations, and precisely what "guided", "informed", and "encoded" mean here. |
 | **2. The method landscape** | {doc}`Method landscape <methods/overview>` — every candidate representation surveyed, and why the recommended combination was chosen before anything was built. |
-| **3. The methods, one at a time** | Nine pages, one per implemented method, equation → code → real results: {doc}`Cauer ladder <methods/cauer>`, {doc}`hysteresis <methods/hysteresis>`, {doc}`neural reluctance circuit <methods/neural_circuit>`, {doc}`Graph-Cauer <methods/graph_cauer>`, {doc}`TEAM7 <methods/team7>`, {doc}`TEAM28 <methods/team28>`, {doc}`co-energy force <methods/coenergy>`, {doc}`friction & thermal <methods/friction_thermal>`, {doc}`combined model <methods/combined>`. |
+| **3. The methods, one at a time** | Ten pages, one per implemented method, equation → code → real results: {doc}`Cauer ladder <methods/cauer>`, {doc}`hysteresis <methods/hysteresis>`, {doc}`neural reluctance circuit <methods/neural_circuit>`, {doc}`Graph-Cauer <methods/graph_cauer>`, {doc}`TEAM7 <methods/team7>`, {doc}`TEAM28 <methods/team28>`, {doc}`co-energy force <methods/coenergy>`, {doc}`friction & thermal <methods/friction_thermal>`, {doc}`velocity-dependent flux weakening <methods/velocity_eddy_weakening>`, {doc}`combined model <methods/combined>`. |
 | **4. The evidence** | {doc}`Results <results>` — what each method actually showed, in one place, including the ones that didn't go as expected. |
 
 New to the project? Start with {doc}`Getting started <getting-started>`, then {doc}`Background <background>`.
@@ -36,6 +36,7 @@ methods/team7
 methods/team28
 methods/coenergy
 methods/friction_thermal
+methods/velocity_eddy_weakening
 methods/combined
 ```
 
@@ -62,6 +63,7 @@ notebooks/06_moving_conductor_team28
 notebooks/07_energy_consistent_force
 notebooks/08_friction_temperature_model
 notebooks/09_atlas_small_combined_model
+notebooks/10_velocity_dependent_eddy_weakening
 ```
 
 ```{toctree}

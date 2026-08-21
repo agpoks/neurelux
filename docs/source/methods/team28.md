@@ -1,7 +1,7 @@
 (team28)=
 # TEAM Workshop Problem 28
 
-The closest public analogue to ATLAS's own motion-coupled eddy-current problem used in this project: a real, fully-transcribed 174-point experimental measurement of an electrodynamic levitation device, from Karl, Fetzer, Kurz, Lehner & Rucker, "Description of TEAM Workshop Problem 28" (Universität Stuttgart).
+The closest public analogue to ATLAS's own motion-coupled eddy-current problem used in this project: a real, fully-transcribed 174-point experimental measurement of an electrodynamic levitation device, from {cite:t}`karl1997description` (Universität Stuttgart).
 
 ## The physical setup
 

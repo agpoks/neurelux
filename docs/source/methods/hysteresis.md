@@ -1,7 +1,7 @@
 (hysteresis)=
 # Hysteresis — Jiles-Atherton on real data
 
-The first method in this project trained on real (not synthetic) data: a Jiles-Atherton hysteresis model calibrated to real ferrite B-H measurements, compared against generic MLP/GRU baselines and a Universal-Differential-Equation variant on both real and synthetic extrapolation tests.
+The first method in this project trained on real (not synthetic) data: a Jiles-Atherton hysteresis model ({cite:t}`jiles1986theory`) calibrated to real ferrite B-H measurements, compared against generic MLP/GRU baselines and a Universal-Differential-Equation variant on both real and synthetic extrapolation tests.
 
 ## The equation
 

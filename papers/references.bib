@@ -22,7 +22,7 @@
   year    = {2020},
   eprint  = {2001.04385},
   archiveprefix = {arXiv},
-  note    = {Formalizes embedding a neural network directly in a differential equation's right-hand side, trained end-to-end through the solver -- the general framework Notebook 02's physics-encoded model (Jiles--Atherton ODE + neural residual on dM/dH) is a concrete instance of. See PLAN.md \S5.}
+  note    = {Formalizes embedding a neural network directly in a differential equation's right-hand side, trained end-to-end through the solver -- the general framework Notebook 02's physics-encoded model (Jiles--Atherton ODE + neural residual on dM/dH) is a concrete instance of.}
 }
 
 @inproceedings{hasani2021liquid,
@@ -36,4 +36,117 @@
   eprint    = {2006.04439},
   archiveprefix = {arXiv},
   note      = {Continuous-time, ODE-based recurrent architecture -- conceptually related to the physics-encoded Cauer ladder's own state-space ODE form (see src/atlas\_physics/cauer.py); noted as a candidate continuous-time backbone worth exploring for notebooks/02\_hysteresis\_material\_model.ipynb, not yet adopted. See REFERENCES.md for accessible write-ups.}
+}
+
+@article{dowell1966effects,
+  author  = {Dowell, P. L.},
+  title   = {Effects of Eddy Currents in Transformer Windings},
+  journal = {Proceedings of the Institution of Electrical Engineers},
+  volume  = {113},
+  number  = {8},
+  pages   = {1387--1394},
+  year    = {1966},
+  doi     = {10.1049/piee.1966.0236},
+  note    = {Classic layered-circuit treatment of skin/proximity effect in windings -- the same "discretize into layers, each with its own frequency-dependent impedance" idea src/atlas\_physics/cauer.py's Cauer ladder applies to a solid conducting rail instead of a winding.}
+}
+
+@article{raissi2019physics,
+  author  = {Raissi, M. and Perdikaris, P. and Karniadakis, G. E.},
+  title   = {Physics-Informed Neural Networks: A Deep Learning Framework for Solving Forward and Inverse Problems Involving Nonlinear Partial Differential Equations},
+  journal = {Journal of Computational Physics},
+  volume  = {378},
+  pages   = {686--707},
+  year    = {2019},
+  doi     = {10.1016/j.jcp.2018.10.045},
+  note    = {The canonical PINN formulation -- soft PDE-residual loss at collocation points -- that notebooks/05\_eddy\_current\_team7.ipynb's PINN and notebooks/03\_neural\_reluctance\_circuit.ipynb's \texttt{PhysicsInformedB} are concrete, smaller-scale instances of.}
+}
+
+@article{armstrong1994survey,
+  author  = {Armstrong-H{\'e}louvry, Brian and Dupont, Pierre and Canudas de Wit, Carlos},
+  title   = {A Survey of Models, Analysis Tools and Compensation Methods for the Control of Machines with Friction},
+  journal = {Automatica},
+  volume  = {30},
+  number  = {7},
+  pages   = {1083--1138},
+  year    = {1994},
+  doi     = {10.1016/0005-1098(94)90209-7},
+  note    = {Standard reference for the Coulomb/Stribeck friction model family used as the fixed, never-learned relation in notebooks/08\_friction\_temperature\_model.ipynb's \texttt{GuidedFriction}.}
+}
+
+@inproceedings{greydanus2019hamiltonian,
+  author    = {Greydanus, Samuel and Dzamba, Misko and Yosinski, Jason},
+  title     = {Hamiltonian Neural Networks},
+  booktitle = {Advances in Neural Information Processing Systems},
+  volume    = {32},
+  pages     = {15353--15363},
+  year      = {2019},
+  eprint    = {1906.01563},
+  archiveprefix = {arXiv},
+  note      = {Learns a scalar potential and takes forces/momenta as its exact derivatives, so a conservation law holds by construction -- the same structural pattern notebooks/07\_energy\_consistent\_force.ipynb's \texttt{CoenergyNet} uses for flux and force as derivatives of one learned co-energy potential.}
+}
+
+@article{fujiwara1990results,
+  author  = {Fujiwara, K. and Nakata, T.},
+  title   = {Results for Benchmark Problem 7 (Asymmetrical Conductor with a Hole)},
+  journal = {COMPEL},
+  volume  = {9},
+  number  = {3},
+  pages   = {137--154},
+  year    = {1990},
+  doi     = {10.1108/eb010071},
+  note    = {The official results paper for TEAM Workshop Problem 7, used in notebooks/05\_eddy\_current\_team7.ipynb -- the companion results paper referenced (but not accessible from this environment, and not used for any value) in that notebook and in REFERENCES.md.}
+}
+
+@inproceedings{karl1997description,
+  author    = {Karl, H. and Fetzer, J. and Kurz, S. and Lehner, G. and Rucker, W. M.},
+  title     = {Description of TEAM Workshop Problem 28: An Electrodynamic Levitation Device},
+  booktitle = {Proceedings of the TEAM Workshop in the Sixth Round},
+  address   = {Graz, Austria},
+  month     = {September},
+  pages     = {48--51},
+  year      = {1997},
+  note      = {The official TEAM Workshop Problem 28 specification, including the real 174-point measured levitation trajectory used to train and evaluate both models in notebooks/06\_moving\_conductor\_team28.ipynb.}
+}
+
+@book{kallenbach2018elektromagnete,
+  author    = {Kallenbach, Eberhard and Eick, R{\"u}diger and Quendt, Peer and Str{\"o}hla, Tom and Feindt, Karsten and Kallenbach, Matthias and Radler, Ovidiu},
+  title     = {Elektromagnete: Grundlagen, Berechnung, Entwurf und Anwendung},
+  publisher = {Springer Vieweg},
+  edition   = {5},
+  year      = {2018},
+  doi       = {10.1007/978-3-658-14788-4},
+  note      = {Standard reference for magnetic-equivalent-circuit modeling of electromagnets -- the same lumped-parameter Kirchhoff's-laws formulation notebooks/03\_neural\_reluctance\_circuit.ipynb and notebooks/10\_velocity\_dependent\_eddy\_weakening.ipynb both build on.}
+}
+
+@article{ebner2025stability,
+  author  = {Ebner, Bernhard and Pl{\"o}chl, Manfred and Edelmann, Johannes},
+  title   = {Stability Behaviour of a Basic Magnetic Track Brake Model: Influences of System Parameters and Motion-Induced Eddy Currents},
+  journal = {Nonlinear Dynamics},
+  year    = {2025},
+  doi     = {10.1007/s11071-025-11574-6},
+  note    = {TU Wien (Institute of Mechanics and Mechatronics), real, current (2025) experimental and theoretical study of exactly this project's central open question -- how motion-induced eddy currents in the rail reduce a magnetic track brake's flux and attraction force with increasing vehicle velocity. Direct source for notebooks/10\_velocity\_dependent\_eddy\_weakening.ipynb's modeling approach (a phenomenological analytical MMF-loss term fit to match measured velocity dependence, folded into a magnetic-equivalent-circuit). Freely accessible synthesis: Ebner, B. (2025), "Stability behaviour of electromagnetic track brakes: self-excitation mechanisms and control", PhD dissertation, TU Wien, https://repositum.tuwien.at/handle/20.500.12708/220336}
+}
+
+@article{wang2018simple,
+  author  = {Wang, Jiabin and Zhu, Jianguo},
+  title   = {A Simple Method for Performance Prediction of Permanent Magnet Eddy Current Couplings Using a New Magnetic Equivalent Circuit Model},
+  journal = {IEEE Transactions on Industrial Electronics},
+  volume  = {65},
+  number  = {3},
+  pages   = {2487--2495},
+  year    = {2018},
+  doi     = {10.1109/TIE.2017.2739704},
+  note    = {Magnetic-equivalent-circuit method for a rotating eddy-current coupling -- one of the two prior-art methods cited by Ebner et al. (2025) for modeling motional eddy currents in a lumped magnetic circuit, the same family of approach notebooks/10\_velocity\_dependent\_eddy\_weakening.ipynb uses.}
+}
+
+@article{gholizad2009direct,
+  author  = {Gholizad, Hossein and Funieru, Bogdan and Binder, Andreas},
+  title   = {Direct Modeling of Motional Eddy Currents in Highly Saturated Solid Conductors by the Magnetic Equivalent Circuit Method},
+  journal = {IEEE Transactions on Magnetics},
+  volume  = {45},
+  number  = {3},
+  pages   = {1016--1019},
+  year    = {2009},
+  doi     = {10.1109/TMAG.2009.2012546},
+  note    = {Magnetic-equivalent-circuit method for a linear (translational) eddy-current problem -- the second prior-art method cited by Ebner et al. (2025) for motional eddy currents in a lumped model, directly analogous to a rail moving under a magnetic track brake pole.}
 }

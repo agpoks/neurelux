@@ -1,7 +1,7 @@
 (graph-cauer)=
 # Surface × depth Graph-Cauer network
 
-Extends {doc}`the 1D Cauer ladder <cauer>` into a 2D graph over both surface position and depth — `PLAN.md`'s central candidate method for ATLAS — and tests whether the added lateral coupling earns its cost against both a topology-poorer baseline and a topology-free but much larger one.
+Extends {doc}`the 1D Cauer ladder <cauer>` into a 2D graph over both surface position and depth — this project's central candidate method for modeling the rail — and tests whether the added lateral coupling earns its cost against both a topology-poorer baseline and a topology-free but much larger one.
 
 ## The equation
 

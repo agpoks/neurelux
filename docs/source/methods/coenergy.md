@@ -1,7 +1,7 @@
 (coenergy)=
 # Co-energy network
 
-Tests whether learning one shared co-energy potential for flux and force — instead of two independent models — earns its keep, on both accuracy and a directly measurable physical-consistency violation.
+Tests whether learning one shared co-energy potential for flux and force — instead of two independent models — earns its keep, on both accuracy and a directly measurable physical-consistency violation. The same "learn a scalar potential, take physical quantities as its exact derivatives" pattern underlies Hamiltonian Neural Networks ({cite:t}`greydanus2019hamiltonian`), there applied to energy and momentum rather than magnetic co-energy.
 
 ## The equation
 

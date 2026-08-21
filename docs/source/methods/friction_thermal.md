@@ -1,7 +1,7 @@
 (friction-thermal)=
 # Friction and thermal feedback
 
-A physics-guided friction coefficient compared against a black-box alternative, closed with a lumped thermal model demonstrating real feedback from temperature back into friction.
+A physics-guided friction coefficient compared against a black-box alternative, closed with a lumped thermal model demonstrating real feedback from temperature back into friction. The Coulomb/Stribeck-type relation kept fixed here is the standard friction-modeling family surveyed in {cite:t}`armstrong1994survey`.
 
 ## The equations
 
