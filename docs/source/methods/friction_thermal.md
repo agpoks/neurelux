@@ -13,7 +13,7 @@ $$
 C_{th}\frac{dT}{dt} = P_{\text{loss}} - hA\,(T - T_{\text{ambient}}), \qquad P_{\text{loss}} = |F_R \cdot v|
 $$
 
-`GuidedFriction` keeps the Coulomb relation as a fixed Python function (`friction_force`), never inside any trainable module — only $\mu_\theta$ is learned. `LumpedThermal` is the same fixed-ODE-structure pattern as every other dynamic model in this project.
+**PHYSICS-GUIDED:** `GuidedFriction` keeps the Coulomb relation $F_R=\mu F_A$ as a fixed Python function (`friction_force`), never inside any trainable module — only the coefficient $\mu_\theta$ is a generic network, with nothing structural stopping it from returning a physically implausible value outside its training range (a softplus keeps it non-negative, no more). `LumpedThermal` is physics-encoded — same fixed-ODE-structure pattern as every other dynamic model in this project — so `BlackBoxFriction` below is the pure black-box control, not `LumpedThermal`.
 
 ## Results
 

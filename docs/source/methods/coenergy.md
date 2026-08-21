@@ -32,6 +32,8 @@ def flux_and_force_from_potential(w_fn, I, g, T):
 
 This means `CoenergyNet` can **never** be evaluated inside `torch.no_grad()` — flux and force *are* derivatives, so the computation graph has to exist even at "inference." `IndependentNets` is the baseline: two separate networks for $\lambda$ and $F_A$, structurally free to disagree.
 
+**PHYSICS-ENCODED:** Maxwell reciprocity isn't a loss term anywhere in `CoenergyNet`'s training — it's a mathematical consequence of both outputs being derivatives of one function, so it holds for *any* trained weights, not just ones a penalty happened to discourage from violating it. `IndependentNets` is the physics-guided-only counterpoint: same inputs, same physical quantities as targets, no structural link between them.
+
 ## Results
 
 Both trained on the same joint flux+force loss; evaluated on the training range and an extrapolated current range never seen during training, plus the reciprocity violation itself:

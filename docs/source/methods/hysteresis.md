@@ -33,6 +33,8 @@ def dM_dH(self, He, M, delta):
 
 Passing `residual=` a small MLP turns this into a **Universal Differential Equation** (Rackauckas et al., 2020) — the known ODE stays exactly in the forward graph, only an unknown correction term is replaced by a network.
 
+**PHYSICS-ENCODED**, both variants: the JA derivative structure is fixed in the forward pass, never a loss penalty. JA-only trains just the five physical parameters; JA+residual (UDE) additionally trains a network *embedded inside* the ODE's right-hand side, still executed every forward pass rather than only discouraged at training time — which is exactly why its extrapolation failure below (unlike a PINN's) is a structural-guarantee gap, not a "loss wasn't evaluated there" gap.
+
 ## Real data
 
 Ferrite N87 (Epcos) B-H major-loop measurements at 25°C and 100°C, extracted from the UPB `materialdatabase` package (`scripts/download_materialdatabase.py`) — real, digitized manufacturer datasheet points, 21 and 22 of them respectively. Ferrite, not steel: no open electrical-steel B-H dataset has been identified yet, so this is the documented method-validation fallback, not a stand-in for ATLAS's actual material.

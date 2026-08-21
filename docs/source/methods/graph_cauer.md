@@ -13,6 +13,8 @@ $$
 
 Every edge stays symmetric and positive (softplus-constrained), so the same negative-semidefiniteness passivity proof from the 1D case covers the full 2D graph unchanged. Velocity enters through the **excitation** — a Gaussian pulse sweeping across surface positions at a rate set by $v$ — not through directional conductances, which would need their own passivity argument.
 
+**PHYSICS-ENCODED**, same pattern as {doc}`the 1D ladder <cauer>`: the grid topology $D$ is a fixed buffer, only per-node $C_i$ and per-edge $G_e$ are trainable — now over 2D lateral+depth structure instead of depth alone.
+
 ## How it's built
 
 `src/atlas_physics/graph_cauer.py::build_grid_graph` constructs the fixed topology: $n_{\text{surface}}$ boundary edges (one port per column), $n_{\text{surface}}(n_{\text{depth}}-1)$ vertical internal edges, $n_{\text{depth}}(n_{\text{surface}}-1)$ horizontal edges. `GraphCauer` generalizes `CauerLadder1D` to a multi-port drive ($B_u$ becomes an $(N, n_{\text{surface}})$ matrix), otherwise identical: `D` is a fixed buffer, only per-node $C_i$ and per-edge $G_e$ are trainable.

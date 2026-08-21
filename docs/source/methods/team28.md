@@ -17,6 +17,8 @@ $$
 
 with mechanics $m\ddot{z} = F_{\text{avg}}(z) - mg - c\,\dot{z}$ — the velocity-proportional damping term $c\dot z$ is the same eddy-current braking mechanism this project's own ATLAS track brake relies on, applied here to a levitating plate instead of a moving rail.
 
+**PHYSICS-ENCODED:** the transformer reduction, cycle-averaging, and Newton's second law are all fixed structure in the forward pass; only $M_0$, $z_0$, $R_2$, $L_2$, $c$ are fit to the real trajectory. The black-box comparison below replaces $F_{\text{avg}}(z)$ with a generic MLP but keeps the same fixed mechanical ODE around it — isolating exactly the force law's contribution.
+
 ## The damping term was not optional
 
 The first version of this model used only $F_{\text{avg}}(z)$, with no velocity-dependent term — a conservative system, like a ball in a potential well, that cannot dissipate the kinetic energy the plate gains on its way up. It never settled: released from rest, it oscillated indefinitely around whatever equilibrium the force curve implied. This was a **qualitative** failure, not an accuracy gap, and it was fixable for an identifiable reason (a missing dissipation term) — see the notebook for the full account.

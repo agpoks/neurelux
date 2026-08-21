@@ -23,7 +23,7 @@ def solve_B(Theta, g, T, mu_r_fn, l_core, n_iter=8):
     return B
 ```
 
-`NeuralMuR` is the physics-encoded permeability: `mu_r0 * (1 + 0.3 * tanh(NN(B,T)))` — a small network **bounded to a ±30% multiplicative modulation** of a learned base value, not an unconstrained function. That bound is the entire point, as the results below show.
+**PHYSICS-ENCODED:** `NeuralMuR`'s permeability, `mu_r0 * (1 + 0.3 * tanh(NN(B,T)))`, is a small network **bounded to a ±30% multiplicative modulation** of a learned base value by construction — `tanh` makes the bound structural, not merely typical. Ampère's law and the exact air-gap reluctance stay fixed around it; only this bounded correction is learned. That bound is the entire point, as the results below show.
 
 ## Results
 

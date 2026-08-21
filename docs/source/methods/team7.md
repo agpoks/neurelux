@@ -26,6 +26,28 @@ $$
 
 At TEAM7's real $\sigma$ and thickness: $\delta(50\text{Hz}) \approx 12.0$mm, $\delta(200\text{Hz}) \approx 6.0$mm — thickness/$\delta$ of 1.6 and 3.2 respectively, so the semi-infinite approximation is more accurate at the higher frequency. **Does {doc}`the Cauer ladder <cauer>`, reused unmodified, reproduce this analytical solution when calibrated at one real frequency and extrapolated to the other?** — the closest question this project can honestly ask of TEAM7 without a 3D solver or the inaccessible reference table.
 
+## Three ways to build it
+
+**PHYSICS-ENCODED:** {doc}`the Cauer ladder <cauer>`, reused with no changes — the diffusion equation's topology is fixed structure, only $C_i, G_i$ are learned.
+
+**PHYSICS-GUIDED** (baseline): a plain MLP over raw $(z,t)$ — no physics anywhere, a pure data fit.
+
+**PHYSICS-INFORMED:** a PINN — the *same* MLP architecture as the guided baseline, with the diffusion-equation residual added as an extra loss term at randomly-sampled collocation points, computed via autograd (real $\mu_0$, $\sigma$ — TEAM7's actual values, not placeholders):
+
+```python
+zc = torch.rand(n_colloc, 1, requires_grad=True) * thickness
+tc = torch.rand(n_colloc, 1, requires_grad=True) * t_span
+Hc = pinn(zc, tc)
+dH_dt = torch.autograd.grad(Hc.sum(), tc, create_graph=True)[0]
+dH_dz = torch.autograd.grad(Hc.sum(), zc, create_graph=True)[0]
+d2H_dz2 = torch.autograd.grad(dH_dz.sum(), zc, create_graph=True)[0]
+residual = MU0 * dH_dt - rho * d2H_dz2   # mu dH/dt = d/dz(rho dH/dz), real mu0/rho
+phys_loss = (residual ** 2).mean()
+loss = data_loss + 1e6 * phys_loss       # data fit + physics penalty, jointly minimized
+```
+
+Nothing here stops `pinn(z, t)` from returning a value that violates the diffusion equation at a point that wasn't sampled — the network is only *discouraged* from doing so where `phys_loss` was actually evaluated during training. That's the entire structural difference from the Cauer ladder, and it's what the results below trace back to.
+
 ## Results
 
 Trained on sparse samples of the analytical solution at 50 Hz only; 200 Hz (TEAM7's second real, specified frequency) held out entirely.
