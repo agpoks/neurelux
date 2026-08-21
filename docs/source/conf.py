@@ -26,6 +26,7 @@ extensions = [
     "nbsphinx_link",
     "autoapi.extension",
     "sphinxcontrib.bibtex",
+    "matplotlib.sphinxext.plot_directive",
 ]
 
 # -- MyST / source parsing --------------------------------------------------
@@ -54,6 +55,13 @@ html_title = "NeuRelux"
 html_static_path = ["_static"]
 html_logo = "_static/logo.svg"
 html_favicon = "_static/favicon.png"
+
+# -- matplotlib plot:: directive (diagrams, via src/atlas_physics/utils/diagrams.py) -----
+plot_include_source = True
+plot_html_show_source_link = False
+plot_html_show_formats = False
+plot_formats = [("png", 110)]
+plot_rcparams = {"figure.autolayout": True}
 
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
