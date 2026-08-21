@@ -12,7 +12,7 @@ Every script, once implemented, must:
 |---|---|---|---|
 | `download_magnet.py` | Princeton MagNet | Notebook 02 | stub |
 | `download_magnet_challenge2.py` | MagNet Challenge 2 | Notebook 02 | stub |
-| `download_materialdatabase.py` | UPB Material Database | Notebook 02/03 | stub |
+| `download_materialdatabase.py` | UPB Material Database | Notebook 02/03 | implemented — extracts real N87 B-H major loops to `data/public/materialdatabase/bh_loops.json` |
 | `download_team7.py` | TEAM Workshop Problem 7 | Notebook 05 | stub (likely manual — no confirmed automatic source yet) |
 | `download_team28.py` | TEAM Workshop Problem 28 | Notebook 06 | stub (likely manual — no confirmed automatic source yet) |
 | `prepare_public_data.py` | (all of the above) | all | stub — shared post-download normalization/caching into `data/public/` |

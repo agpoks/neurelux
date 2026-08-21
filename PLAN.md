@@ -90,6 +90,8 @@ Typical instrumentation for this class of system, listed here as the expected si
 
 **These three categories are not mutually exclusive within one architecture** — the recommended final ATLAS model (Section 8) is guided (feature choices), informed (optional energy/PDE residual regularizers on top), *and* encoded (topology) simultaneously, at different levels.
 
+**Two flavors of physics-encoded.** The Cauer ladder only learns scalar *parameters* (`C_i, G_i`) inside a fixed linear equation — no neural network sits inside the ODE. The neural equivalent circuit and the Jiles–Atherton-plus-residual model go one step further: an actual small neural network is embedded directly in the equation's right-hand side (`μ_θ(B,T)`, or a residual added to `dM/dH`), trained end-to-end through the integrator via autograd. This second flavor is a concrete instance of a **Universal Differential Equation** (Rackauckas et al., 2020 — verified in `papers/references.bib`): a known governing equation with an unknown term replaced or augmented by a neural network, rather than the equation being approximated by a neural network wholesale. Notebook 02's physics-encoded model (Section 7) is built this way.
+
 ---
 
 ## 6. Public datasets and benchmarks
@@ -98,7 +100,7 @@ Typical instrumentation for this class of system, listed here as the expected si
 |---|---|---|---|---|---|---|---|
 | Princeton MagNet | https://github.com/PrincetonUniversity/magnet | B(t), H(t), core loss, various ferrite materials/waveforms | B, H, f, T, P_loss | research use, see repo | Partial (git-based, large) | 02 | Hysteresis modeling method testbed (ferrite, not steel — used for method validation only) |
 | MagNet Challenge 2 | https://github.com/minjiechen/magnetchallenge-2 | Extended MagNet-style waveform/loss data | B, H, f, T | see repo | Partial | 02 | Same as above |
-| UPB Material Database | https://github.com/upb-lea/materialdatabase | Structured magnetic material DB (permeability, loss, B-H) | material params | MIT (verify) | Yes (`pip`/git) | 02 | Structured material parameter lookup for baselines |
+| UPB Material Database | https://github.com/upb-lea/materialdatabase | Structured magnetic material DB (permeability, loss, B-H) | material params | GPL-3.0 (confirmed) | Yes (`pip`, used) | 02 | Real N87 (Epcos) B-H major loops at 25C/100C used directly in Notebook 02 |
 | FEM Magnetics Toolbox | https://github.com/upb-lea/FEM_Magnetics_Toolbox | FEM-based magnetic component design/simulation tool | geometry, field results | MIT (verify) | Yes (`pip`) | reference only | Possible future FEM cross-check |
 | HystRNN | https://github.com/chandratue/HystRNN | Code + example hysteresis data/model | B, H | see repo | Yes (git clone) | 02 | Reference "physics-aware recurrent model" implementation (Model C) |
 | Magnetic Hysteresis Neural Operator | https://github.com/chandratue/magnetic_hysteresis_neural_operator | Code + data for operator-learning hysteresis | B, H | see repo | Yes (git clone) | 02 (optional RIFNO/FNO) | Reference for FNO/neural-operator hysteresis baseline |
